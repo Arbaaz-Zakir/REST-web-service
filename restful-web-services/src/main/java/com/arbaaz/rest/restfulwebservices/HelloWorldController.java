@@ -1,0 +1,24 @@
+package com.arbaaz.rest.restfulwebservices;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+//identify controller
+@RestController
+public class HelloWorldController {
+
+	
+	//mapping a get request to hello world, when url entered returns a hard coded string
+	@GetMapping(path = "/hello-world")
+	public String helloWorld() {
+		return "Hello World";
+	}
+
+	//hello-world-bean
+	@GetMapping(path = "/hello-world-bean")
+	public HelloWorldBean helloWorldBean() {
+		return new HelloWorldBean("Hello World");
+	}
+}
