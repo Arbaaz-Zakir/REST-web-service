@@ -3,6 +3,8 @@ package com.arbaaz.rest.restfulwebservices.user;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,7 +39,7 @@ public class UserController {
 	
 	//create a new user
 	@PostMapping("/users")
-	public ResponseEntity createUser(@RequestBody User user){
+	public ResponseEntity<Object> createUser(@Valid @RequestBody User user){
 		User newUser = service.save(user);
 		//created
 		URI location = ServletUriComponentsBuilder
