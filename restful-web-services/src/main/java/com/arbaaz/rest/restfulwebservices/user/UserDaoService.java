@@ -23,7 +23,8 @@ public class UserDaoService {
 	
 	public User save(User user) {
 		if(user.getId() == null) {
-			user.setId(usersCount+1);
+			incrementCount();
+			user.setId(usersCount);
 		}
 		users.add(user);
 		return user;
@@ -48,6 +49,10 @@ public class UserDaoService {
 			}
 		}
 		return null;
+	}
+	
+	public void incrementCount() {
+		usersCount++;
 	}
 	
 }
