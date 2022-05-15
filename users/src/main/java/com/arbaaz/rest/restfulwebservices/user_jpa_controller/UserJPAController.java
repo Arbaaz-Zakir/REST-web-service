@@ -36,7 +36,7 @@ public class UserJPAController {
 	private UserRepository userRepository;
 	
 	//retrieve all users
-	@GetMapping("/jpa/users")
+	@GetMapping("/users")
 	public MappingJacksonValue retrieveAllUsers(){
 		
 		SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("id", "name", "birthdate");
@@ -48,7 +48,7 @@ public class UserJPAController {
 	}
 	
 	//retrieve a user
-	@GetMapping("/jpa/users/{id}")
+	@GetMapping("/users/{id}")
 	public MappingJacksonValue retrieveUser(@PathVariable int id){
 		Optional<User> user = userRepository.findById(id);
 		if(!user.isPresent()) 
@@ -69,7 +69,7 @@ public class UserJPAController {
 	}
 	
 	//create a new user
-	@PostMapping("/jpa/users")
+	@PostMapping("/users")
 	public ResponseEntity<Object> createUser(@Valid @RequestBody User user){
 		User newUser = userRepository.save(user);
 		//created
@@ -81,7 +81,7 @@ public class UserJPAController {
 	}
 	
 	//delete a user
-		@DeleteMapping("/jpa/users/{id}")
+		@DeleteMapping("/users/{id}")
 		public void deleteUser(@PathVariable int id){
 			userRepository.deleteById(id);
 			
