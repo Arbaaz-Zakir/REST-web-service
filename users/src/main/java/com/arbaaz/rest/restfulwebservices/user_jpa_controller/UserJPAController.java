@@ -31,12 +31,14 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 @RestController
 public class UserJPAController {
 	
+	//@Autowired
+	//private WalletProxy walletProxy;
 	
 	@Autowired
 	private UserRepository userRepository;
 	
 	//retrieve all users
-	@GetMapping("/users")
+	@GetMapping("/users/all-users")
 	public MappingJacksonValue retrieveAllUsers(){
 		
 		SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("id", "name", "birthdate");
@@ -48,7 +50,7 @@ public class UserJPAController {
 	}
 	
 	//retrieve a user
-	@GetMapping("/users/{id}")
+	@GetMapping("/users/get-user/{id}")
 	public MappingJacksonValue retrieveUser(@PathVariable int id){
 		Optional<User> user = userRepository.findById(id);
 		if(!user.isPresent()) 
@@ -72,6 +74,7 @@ public class UserJPAController {
 	@PostMapping("/users")
 	public ResponseEntity<Object> createUser(@Valid @RequestBody User user){
 		User newUser = userRepository.save(user);
+		//walletProxy.generateWallet(user.getId());
 		//created
 		URI location = ServletUriComponentsBuilder
 		.fromCurrentRequest().path("/{id}")
@@ -81,9 +84,14 @@ public class UserJPAController {
 	}
 	
 	//delete a user
-		@DeleteMapping("/users/{id}")
+		@DeleteMapping("/users/delete-user/{id}")
 		public void deleteUser(@PathVariable int id){
 			userRepository.deleteById(id);
 			
+		}
+		
+		@GetMapping("/users/{id}")
+		public boolean exists(@PathVariable Integer id){
+			return userRepository.existsById(id);
 		}
 }

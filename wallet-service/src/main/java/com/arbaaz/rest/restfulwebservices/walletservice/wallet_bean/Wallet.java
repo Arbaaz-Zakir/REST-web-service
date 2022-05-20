@@ -7,25 +7,32 @@ import javax.persistence.Id;
 @Entity
 public class Wallet {
 
+//	@Id
+//	@GeneratedValue
+//	private Integer walletId;
 	@Id
-	@GeneratedValue
-	private Integer walletId;
-	
 	private Integer userId;
 	
-	private Double balance;
+	private double balance = (double) 10;
 	
+	
+	
+//	public Wallet(Integer userId) {
+//		super();
+//		this.userId = userId;
+//	}
+
 	protected Wallet() {
 		
 	}
 
-	public Integer getWalletId() {
-		return walletId;
-	}
-
-	public void setWalletId(Integer walletId) {
-		this.walletId = walletId;
-	}
+//	public Integer getWalletId() {
+//		return walletId;
+//	}
+//
+//	public void setWalletId(Integer walletId) {
+//		this.walletId = walletId;
+//	}
 	
 	public Integer getUserId() {
 		return userId;
@@ -39,7 +46,7 @@ public class Wallet {
 		return balance;
 	}
 
-	public void setBalance(Double balance) {
+	public void setBalance(double balance) {
 		this.balance = balance;
 	}
 	

@@ -15,27 +15,47 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.arbaaz.rest.restfulwebservices.walletservice.UserProxy;
+import com.arbaaz.rest.restfulwebservices.walletservice.UserTemplate;
+//import com.arbaaz.rest.restfulwebservices.walletservice.user_proxy.UserProxy;
 import com.arbaaz.rest.restfulwebservices.walletservice.wallet_bean.Wallet;
 import com.arbaaz.rest.restfulwebservices.walletservice.wallet_repository.WalletRepository;
 
 @RestController
 public class WalletController {
 	
+	private UserTemplate currentUser;
+	
 	@Autowired
 	private WalletRepository walletRepository;
 	
+	@Autowired
+	private UserProxy userProxy;
+	
+	
 	@PostMapping("/wallets")
 	public ResponseEntity<Object> createWallet(@RequestBody Wallet wallet){
-		Wallet newWallet = walletRepository.save(wallet);
+		if(userProxy.exists(wallet.getUserId()) && !walletRepository.existsById(wallet.getUserId())) {
+			Wallet newWallet = walletRepository.save(wallet);
+			
+			URI location = ServletUriComponentsBuilder
+					.fromCurrentRequest().path("/{id}")
+					.buildAndExpand(newWallet
+							.getUserId())
+					.toUri();
+			
+			return ResponseEntity.created(location).build();
+		}
+//		URI location = ServletUriComponentsBuilder
+//				.fromCurrentRequest().path("/{id}")
+//				.buildAndExpand(newWallet
+//						.getWalletId())
+//				.toUri();
 		
-		URI location = ServletUriComponentsBuilder
-				.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(newWallet
-						.getWalletId())
-				.toUri();
-		
-		return ResponseEntity.created(location).build();
+//		return ResponseEntity.created(location).build();
+		return ResponseEntity.badRequest().build();
 	}
+	
 	
 	
 	@GetMapping("/wallets")
@@ -43,7 +63,7 @@ public class WalletController {
 		return walletRepository.findAll();
 	}
 	
-	@GetMapping("/wallet/{id}")
+	@GetMapping("/wallets/{id}")
 	public Double GetBalance(@PathVariable int id) {
 		//Optional<Wallet> wallet = walletRepository.findById(id);
 		Optional<Wallet> wallet = walletRepository.findById(id);
@@ -54,7 +74,7 @@ public class WalletController {
 //		}
 	}
 	
-	@PutMapping("/wallet/{id}/{add}")
+	@PutMapping("/wallets/{id}/add/{add}")
 	public void AddBalance(@PathVariable int id,@PathVariable double add) {
 		Wallet wallet = walletRepository.getById(id);
 		wallet.addBalance(add);
