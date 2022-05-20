@@ -1,0 +1,11 @@
+users-service
+http://localhost:8000/users/all-users 		  -> get all users
+http://localhost:8000/users/get-user/{id}	  -> get a specific user
+http://localhost:8000/users/				  -> create a new user
+http://localhost:8000/users/delete-user/{id}  -> delete a user
+
+wallet-service
+http://localhost:8100/wallets/
+http://localhost:8100/wallets/
+http://localhost:8100/wallets/{id}
+http://localhost:8100/wallets/{id}/add/{add}
