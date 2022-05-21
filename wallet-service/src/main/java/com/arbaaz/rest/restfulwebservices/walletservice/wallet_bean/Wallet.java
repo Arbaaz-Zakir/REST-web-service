@@ -6,10 +6,12 @@ import javax.persistence.Id;
 
 @Entity
 public class Wallet {
-
+//use generated value and userid and try to find a way of retriving userid instead to see if that works
+	
 //	@Id
 //	@GeneratedValue
 //	private Integer walletId;
+
 	@Id
 	private Integer userId;
 	

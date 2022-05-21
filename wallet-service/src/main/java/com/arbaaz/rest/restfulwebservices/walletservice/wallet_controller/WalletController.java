@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,8 +35,11 @@ public class WalletController {
 	
 	
 	@PostMapping("/wallets")
-	public ResponseEntity<Object> createWallet(@RequestBody Wallet wallet){
-		if(userProxy.exists(wallet.getUserId()) && !walletRepository.existsById(wallet.getUserId())) {
+	public ResponseEntity<Object> createWallet(@Valid @RequestBody Wallet wallet){
+		Integer id = wallet.getUserId();
+//		boolean bool = userProxy.exists(id);
+		//userProxy.exists(wallet.getUserId());
+		if(exists(id) && !walletRepository.existsById(wallet.getUserId())) {
 			Wallet newWallet = walletRepository.save(wallet);
 			
 			URI location = ServletUriComponentsBuilder
@@ -53,10 +57,16 @@ public class WalletController {
 //				.toUri();
 		
 //		return ResponseEntity.created(location).build();
-		return ResponseEntity.badRequest().build();
+		//return ResponseEntity.badRequest().build();
+		return null;
 	}
 	
-	
+	@GetMapping("/users/{id}")
+	public boolean exists(@PathVariable Integer id) {
+		return userProxy.exists(id);
+		
+		
+	}
 	
 	@GetMapping("/wallets")
 	public List<Wallet> allWallets(){

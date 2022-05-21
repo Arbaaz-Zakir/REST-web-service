@@ -8,6 +8,8 @@ import javax.validation.Valid;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -33,7 +35,7 @@ public class UserJPAController {
 	
 	//@Autowired
 	//private WalletProxy walletProxy;
-	
+	//private Logger logger = LoggerFactory.getLogger(UserJPAController.class);
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -92,6 +94,7 @@ public class UserJPAController {
 		
 		@GetMapping("/users/{id}")
 		public boolean exists(@PathVariable Integer id){
+			//logger.info("does user " + id +" exist");
 			return userRepository.existsById(id);
 		}
 }

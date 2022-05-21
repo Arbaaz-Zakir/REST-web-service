@@ -36,6 +36,6 @@ public interface UserProxy {
 	public void deleteUser(@PathVariable int id);
 		
 	@GetMapping("/users/{id}")
-	public boolean exists(@PathVariable Integer integer);
+	public boolean exists(@PathVariable Integer id);
 
 }

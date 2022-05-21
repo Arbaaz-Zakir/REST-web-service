@@ -11,17 +11,14 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonFilter;
 
 @JsonFilter("UserFilter")
-@Entity
+
 public class UserTemplate {
 	
-	@Id
-	@GeneratedValue
 	private Integer id;
 	
-	@Size(min = 2, message = "Name should be at least 2 characters")
+	
 	private String name;
 	
-	@Past
 	private Date birthdate;
 	
 	//contructor below user for DAO 
