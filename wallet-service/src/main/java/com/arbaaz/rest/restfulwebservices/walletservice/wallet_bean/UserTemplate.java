@@ -1,4 +1,4 @@
-package com.arbaaz.rest.restfulwebservices.walletservice;
+package com.arbaaz.rest.restfulwebservices.walletservice.wallet_bean;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.arbaaz.rest.restfulwebservices.walletservice;
+package com.arbaaz.rest.restfulwebservices.walletservice.user_proxy;
 
 import java.net.URI;
 import java.util.Optional;
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import com.arbaaz.rest.restfulwebservices.walletservice.wallet_bean.UserTemplate;
 
 
 @FeignClient(name="user-service", url = "localhost:8000")

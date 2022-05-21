@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.arbaaz.rest.restfulwebservices.walletservice.UserProxy;
-import com.arbaaz.rest.restfulwebservices.walletservice.UserTemplate;
+import com.arbaaz.rest.restfulwebservices.walletservice.user_proxy.UserProxy;
+import com.arbaaz.rest.restfulwebservices.walletservice.wallet_bean.UserTemplate;
 //import com.arbaaz.rest.restfulwebservices.walletservice.user_proxy.UserProxy;
 import com.arbaaz.rest.restfulwebservices.walletservice.wallet_bean.Wallet;
 import com.arbaaz.rest.restfulwebservices.walletservice.wallet_repository.WalletRepository;
