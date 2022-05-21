@@ -57,8 +57,8 @@ public class WalletController {
 //				.toUri();
 		
 //		return ResponseEntity.created(location).build();
-		//return ResponseEntity.badRequest().build();
-		return null;
+		return ResponseEntity.badRequest().build();
+		//return null;
 	}
 	
 	@GetMapping("/users/{id}")
@@ -88,6 +88,15 @@ public class WalletController {
 	public void AddBalance(@PathVariable int id,@PathVariable double add) {
 		Wallet wallet = walletRepository.getById(id);
 		wallet.addBalance(add);
+		walletRepository.save(wallet);
+		//return walletRepository.getById(id);
+
+	}
+	
+	@PutMapping("/wallets/{id}/minus/{minus}")
+	public void MinusBalance(@PathVariable int id, @PathVariable double minus) {
+		Wallet wallet = walletRepository.getById(id);
+		wallet.minusBalance(minus);
 		walletRepository.save(wallet);
 		//return walletRepository.getById(id);
 

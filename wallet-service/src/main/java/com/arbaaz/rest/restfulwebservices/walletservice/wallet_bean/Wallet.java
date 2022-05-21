@@ -56,6 +56,10 @@ public class Wallet {
 		balance += amount;
 	}
 	
+	public void minusBalance(double amount) {
+		balance -= amount;
+	}
+	
 	
 
 }
