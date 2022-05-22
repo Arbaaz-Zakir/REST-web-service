@@ -19,7 +19,7 @@ public class Order {
 	
 	private Double orderTotal;
 	
-	private boolean orderComplete;
+	private boolean orderComplete = false;
 	
 	
 
@@ -29,7 +29,7 @@ public class Order {
 		this.userId = userId;
 		this.basket = basket;
 		this.orderTotal = orderTotal;
-		this.orderComplete = orderComplete;
+		
 	}
 
 	public Order() {
