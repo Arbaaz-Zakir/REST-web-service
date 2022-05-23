@@ -46,5 +46,11 @@ public class MenuController {
 		menuRepository.deleteById(id);
 		
 	}
+	
+	@GetMapping("/menu/{itemid}")
+	public Item getMenuItem(@PathVariable int itemid) {
+		return menuRepository.getById(itemid);
+	}
+	
 
 }

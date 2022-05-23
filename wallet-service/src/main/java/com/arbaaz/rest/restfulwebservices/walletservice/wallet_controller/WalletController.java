@@ -76,8 +76,8 @@ public class WalletController {
 	@GetMapping("/wallets/{id}")
 	public Double GetBalance(@PathVariable int id) {
 		//Optional<Wallet> wallet = walletRepository.findById(id);
-		Optional<Wallet> wallet = walletRepository.findById(id);
-		return walletRepository.getById(id).getBalance();
+		Wallet wallet = walletRepository.getById(id);
+		return wallet.getBalance();
 		
 //		if(wallet==null) {
 //			throw new WalletNotFoundException("wallet: " + id);

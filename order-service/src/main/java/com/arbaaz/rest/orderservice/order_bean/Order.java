@@ -6,6 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.arbaaz.rest.orderservice.order_repository.ItemRepository;
+
 @Entity
 public class Order {
 	
@@ -15,7 +19,9 @@ public class Order {
 	
 	private Integer userId;
 	
-	private List<ItemTemplate> basket;
+	//private List<ItemTemplate> basket;
+	@Autowired
+	private ItemRepository basket;
 	
 	private Double orderTotal;
 	
@@ -23,14 +29,14 @@ public class Order {
 	
 	
 
-	public Order(Integer orderId, Integer userId, List<ItemTemplate> basket, Double orderTotal, boolean orderComplete) {
-		super();
-		this.orderId = orderId;
-		this.userId = userId;
-		this.basket = basket;
-		this.orderTotal = orderTotal;
-		
-	}
+//	public Order(Integer orderId, Integer userId, Double orderTotal, boolean orderComplete) {
+//		super();
+//		this.orderId = orderId;
+//		this.userId = userId;
+//		//this.basket = basket;
+//		this.orderTotal = orderTotal;
+//		
+//	}
 
 	public Order() {
 		super();
@@ -53,12 +59,12 @@ public class Order {
 	}
 
 	public List<ItemTemplate> getBasket() {
-		return basket;
+		return basket.findAll();
 	}
-
-	public void setBasket(List<ItemTemplate> basket) {
-		this.basket = basket;
-	}
+//
+//	public void setBasket(List<ItemTemplate> basket) {
+//		this.basket = basket;
+//	}
 
 	public Double getOrderTotal() {
 		return orderTotal;
@@ -76,6 +82,23 @@ public class Order {
 		this.orderComplete = orderComplete;
 	}
 	
+	public void completeOrder() {
+		for(int i = 1; i< basket.count(); i++) {
+			orderTotal += basket.getById(i).getPrice();
+		}
+//		for(ItemTemplate item : basket.) {
+//			orderTotal += item.getPrice();
+//		}
+		this.orderComplete = true;
+	}
+	
+	public void addItem(ItemTemplate item) {
+		basket.save(item);
+	}
+	
+	public void removeItem(ItemTemplate item) {
+		basket.delete(item);
+	}
 	
 
 }
