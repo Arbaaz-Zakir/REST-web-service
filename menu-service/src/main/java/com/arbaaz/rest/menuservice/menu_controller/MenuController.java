@@ -42,7 +42,7 @@ public class MenuController {
 	}
 	
 	@DeleteMapping("/menu/{id}")
-	public void deleteUser(@PathVariable int id){
+	public void deleteItem(@PathVariable int id){
 		menuRepository.deleteById(id);
 		
 	}
@@ -50,6 +50,14 @@ public class MenuController {
 	@GetMapping("/menu/{itemid}")
 	public Item getMenuItem(@PathVariable int itemid) {
 		return menuRepository.getById(itemid);
+	}
+	
+	@GetMapping("/menu/{id}")
+	public boolean exists(@PathVariable int id) {
+		if(menuRepository.getById(id)!=null) {
+			return true;
+		}
+		return false;
 	}
 	
 

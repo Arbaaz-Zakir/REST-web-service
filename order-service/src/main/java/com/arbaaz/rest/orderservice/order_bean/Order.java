@@ -20,8 +20,8 @@ public class Order {
 	private Integer userId;
 	
 	//private List<ItemTemplate> basket;
-	@Autowired
-	private ItemRepository basket;
+//	@Autowired
+//	private ItemRepository basket;
 	
 	private Double orderTotal;
 	
@@ -58,9 +58,9 @@ public class Order {
 		this.userId = userId;
 	}
 
-	public List<ItemTemplate> getBasket() {
-		return basket.findAll();
-	}
+//	public List<ItemTemplate> getBasket() {
+//		return basket.findAll();
+//	}
 //
 //	public void setBasket(List<ItemTemplate> basket) {
 //		this.basket = basket;
@@ -82,23 +82,23 @@ public class Order {
 		this.orderComplete = orderComplete;
 	}
 	
-	public void completeOrder() {
-		for(int i = 1; i< basket.count(); i++) {
-			orderTotal += basket.getById(i).getPrice();
-		}
-//		for(ItemTemplate item : basket.) {
-//			orderTotal += item.getPrice();
+//	public void completeOrder() {
+//		for(int i = 1; i< basket.count(); i++) {
+//			orderTotal += basket.getById(i).getPrice();
 //		}
-		this.orderComplete = true;
-	}
-	
-	public void addItem(ItemTemplate item) {
-		basket.save(item);
-	}
-	
-	public void removeItem(ItemTemplate item) {
-		basket.delete(item);
-	}
+////		for(ItemTemplate item : basket.) {
+////			orderTotal += item.getPrice();
+////		}
+//		this.orderComplete = true;
+//	}
+//	
+//	public void addItem(ItemTemplate item) {
+//		basket.save(item);
+//	}
+//	
+//	public void removeItem(ItemTemplate item) {
+//		basket.delete(item);
+//	}
 	
 
 }
