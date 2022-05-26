@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 //import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-//@EnableFeignClients
+@EnableFeignClients
 public class UserServiceApplication {
 
 	public static void main(String[] args) {
