@@ -12,9 +12,9 @@ import javax.persistence.Id;
 @Entity
 public class Basket {
 	
-	@Id
-	@GeneratedValue
-	private Integer basketId;
+//	@Id
+//	@GeneratedValue
+//	private Integer basketId;
 	
 	private Integer userId;
 	
@@ -33,18 +33,18 @@ public class Basket {
 
 	public Basket(Integer basketId, Integer userId, String items) {
 		super();
-		this.basketId = basketId;
+		//this.basketId = basketId;
 		this.userId = userId;
 		this.items = items;
 	}
 
-	public Integer getBasketId() {
-		return basketId;
-	}
-
-	public void setBasketId(Integer basketId) {
-		this.basketId = basketId;
-	}
+//	public Integer getBasketId() {
+//		return basketId;
+//	}
+//
+//	public void setBasketId(Integer basketId) {
+//		this.basketId = basketId;
+//	}
 
 	public Integer getUserId() {
 		return userId;
