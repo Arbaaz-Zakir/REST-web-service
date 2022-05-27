@@ -15,7 +15,7 @@ public class Basket {
 //	@Id
 //	@GeneratedValue
 //	private Integer basketId;
-	
+	@Id
 	private Integer userId;
 	
 	private String items;

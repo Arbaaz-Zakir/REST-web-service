@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.arbaaz.rest.basketservice.MenuProxy;
+import com.arbaaz.rest.basketservice.WalletProxy;
 import com.arbaaz.rest.basketservice.bean.Basket;
 import com.arbaaz.rest.basketservice.bean.Item;
 import com.arbaaz.rest.basketservice.repository.ItemRepository;
@@ -29,6 +30,9 @@ public class BasketController {
 	
 	@Autowired
 	MenuProxy menuProxy;
+	
+	@Autowired
+	WalletProxy walletProxy;
 	
 	//post new basket with 1 item
 	// fix uri location
@@ -56,14 +60,17 @@ public class BasketController {
 		basket.save(usersBasket);
 	}
 	
-	//add to basket depending
+	//add to basket depending if they already have basket and item exists on the menu
 	@GetMapping("/user/{userid}/basket/{itemid}")
 	public void basketOption(@PathVariable int userid, @PathVariable int itemid) {
-		if(basket.existsById(userid)) {
-			addToExistingBasket(userid, itemid);
-		}
-		else {
-			addToNewBasket(userid, itemid);
+		
+		if(menuProxy.exists(itemid)) {
+			if(basket.existsById(userid)) {
+				addToExistingBasket(userid, itemid);
+			}
+			else {
+				addToNewBasket(userid, itemid);
+			}
 		}
 	}
 	
@@ -91,22 +98,33 @@ public class BasketController {
 		return aBasket.getTotal();
 	}
 	
-	//add item to basket
-	@PutMapping("/basket/{basketid}/item/{menuitem}")
-	public void addItem(@PathVariable int basketid, @PathVariable int menuitem) {
-		if(menuProxy.exists(menuitem)) {
-			Item item = menuProxy.getMenuItem(menuitem);
-			Basket newBasket = basket.getById(basketid);
-			newBasket.addItem(item.getItemName(), item.getPrice());
-			basket.save(newBasket);
-		}
-		
-	}
+//	//add item to basket
+//	@PutMapping("/basket/{basketid}/item/{menuitem}")
+//	public void addItem(@PathVariable int basketid, @PathVariable int menuitem) {
+//		if(menuProxy.exists(menuitem)) {
+//			Item item = menuProxy.getMenuItem(menuitem);
+//			Basket newBasket = basket.getById(basketid);
+//			newBasket.addItem(item.getItemName(), item.getPrice());
+//			basket.save(newBasket);
+//		}
+//		
+//	}
 	
 	//delete mapping
-	@DeleteMapping("/basket")
-	public void clearBasket() {
-		
+	@DeleteMapping("/user/{userid}/basket")
+	public void clearBasket(@PathVariable int userid) {
+		basket.deleteById(userid);
+	}
+	
+	//checkout
+	@GetMapping("/user/{userid}/basket/checkout")
+	public void checkout(@PathVariable int userid) {
+		double total  = basket.getById(userid).getTotal();
+		if(total <= walletProxy.GetBalance(userid)) {
+			walletProxy.MinusBalance(userid, total);
+			clearBasket(userid);
+		}
+		//clearBasket(userid);
 	}
 	
 	

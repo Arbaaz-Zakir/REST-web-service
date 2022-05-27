@@ -97,4 +97,14 @@ public class UserJPAController {
 			//logger.info("does user " + id +" exist");
 			return userRepository.existsById(id);
 		}
+		
+		//add item to basket
+		
+		//checkout
+		
+		
+		
+		
+		
+		
 }

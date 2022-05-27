@@ -35,7 +35,7 @@ public class WalletController {
 	
 	
 	@PostMapping("/wallets")
-	public ResponseEntity<Object> createWallet(@Valid @RequestBody Wallet wallet){
+	public ResponseEntity<Object> createWallet(@RequestBody Wallet wallet){
 		Integer id = wallet.getUserId();
 //		boolean bool = userProxy.exists(id);
 		//userProxy.exists(wallet.getUserId());
