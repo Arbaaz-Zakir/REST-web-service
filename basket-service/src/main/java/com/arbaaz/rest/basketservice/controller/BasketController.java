@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.arbaaz.rest.basketservice.MenuProxy;
+import com.arbaaz.rest.basketservice.OrderProxy;
 import com.arbaaz.rest.basketservice.WalletProxy;
 import com.arbaaz.rest.basketservice.bean.Basket;
 import com.arbaaz.rest.basketservice.bean.Item;
@@ -27,6 +28,8 @@ public class BasketController {
 	@Autowired
 	ItemRepository basket;
 	
+	@Autowired
+	OrderProxy orders;
 	
 	@Autowired
 	MenuProxy menuProxy;
@@ -121,6 +124,9 @@ public class BasketController {
 	public void checkout(@PathVariable int userid) {
 		double total  = basket.getById(userid).getTotal();
 		if(total <= walletProxy.GetBalance(userid)) {
+			
+			orders.createOrder(userid);
+			
 			walletProxy.MinusBalance(userid, total);
 			clearBasket(userid);
 		}
