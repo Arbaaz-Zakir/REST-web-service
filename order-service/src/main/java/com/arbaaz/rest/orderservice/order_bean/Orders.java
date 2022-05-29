@@ -1,17 +1,17 @@
 package com.arbaaz.rest.orderservice.order_bean;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.arbaaz.rest.orderservice.order_repository.ItemRepository;
 
 @Entity
-public class Order {
+public class Orders {
 	
 	@Id
 	@GeneratedValue
@@ -19,28 +19,26 @@ public class Order {
 	
 	private Integer userId;
 	
-	//private List<ItemTemplate> basket;
-//	@Autowired
-//	private ItemRepository basket;
+	private String orderItems;
 	
 	private Double orderTotal;
 	
-	private boolean orderComplete = false;
-	
-	
+	//private String timestamp;
 
-//	public Order(Integer orderId, Integer userId, Double orderTotal, boolean orderComplete) {
-//		super();
-//		this.orderId = orderId;
-//		this.userId = userId;
-//		//this.basket = basket;
-//		this.orderTotal = orderTotal;
-//		
-//	}
-
-	public Order() {
+	public Orders() {
 		super();
 	}
+	
+	
+
+	public Orders(Integer userId, String orderItems, Double orderTotal) {
+		super();
+		this.userId = userId;
+		this.orderItems = orderItems;
+		this.orderTotal = orderTotal;
+	}
+
+
 
 	public Integer getOrderId() {
 		return orderId;
@@ -74,13 +72,34 @@ public class Order {
 		this.orderTotal = orderTotal;
 	}
 
-	public boolean isOrderComplete() {
-		return orderComplete;
+	public String getOrderItems() {
+		return orderItems;
 	}
 
-	public void setOrderComplete(boolean orderComplete) {
-		this.orderComplete = orderComplete;
+	public void setOrderItems(String items) {
+		this.orderItems = items;
 	}
+
+//	public String getTimestamp() {
+//		return timestamp;
+//	}
+//
+//	public void setTimestamp(String timestamp) {
+//		this.timestamp = timestamp;
+//	}
+//	
+	
+
+	
+
+	
+	
+	
+
+
+
+	
+	
 	
 //	public void completeOrder() {
 //		for(int i = 1; i< basket.count(); i++) {

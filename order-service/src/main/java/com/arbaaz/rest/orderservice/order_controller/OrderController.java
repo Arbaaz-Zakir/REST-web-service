@@ -1,6 +1,7 @@
 package com.arbaaz.rest.orderservice.order_controller;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,41 +15,53 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.arbaaz.rest.orderservice.MenuProxy;
+import com.arbaaz.rest.orderservice.BasketProxy;
+import com.arbaaz.rest.orderservice.order_bean.Basket;
 import com.arbaaz.rest.orderservice.order_bean.ItemTemplate;
-import com.arbaaz.rest.orderservice.order_bean.Order;
+import com.arbaaz.rest.orderservice.order_bean.Orders;
 import com.arbaaz.rest.orderservice.order_repository.OrderRepository;
 
 @RestController
 public class OrderController {
 	
-//	@Autowired
+	@Autowired
+	private BasketProxy basketsProxy;
 //	private MenuProxy menuProxy;
 	
-//	@Autowired
-//	private OrderRepository orderRepository;
+	@Autowired
+	private OrderRepository orders;
 	
-//	@GetMapping("/orders")
-//	public List<Order> AllOrders() {
-//		return orderRepository.findAll();
-//		
-//	}
-//	
-//	@GetMapping("/orders/{orderid}")
-//	public Optional<Order> getOrder(@PathVariable int orderid) {
-//		return orderRepository.findById(orderid);
-//	}
-//	
-//	@PostMapping("/orders")
-//	public ResponseEntity<Object> createOrder(@RequestBody Order order){
-//		Order newOrder = orderRepository.save(order);
-//		URI location = ServletUriComponentsBuilder
-//				.fromCurrentRequest().path("/{id}")
-//				.buildAndExpand(newOrder.getOrderId()).toUri();
-//				
-//		return ResponseEntity.created(location).build();
-//
-//	}
+	@GetMapping("/orders")
+	public List<Orders> AllOrders() {
+		return orders.findAll();
+		
+	}
+	
+	@GetMapping("/orders/{orderid}")
+	public Optional<Orders> getAOrder(@PathVariable int orderid) {
+		return orders.findById(orderid);
+	}
+	
+//	//post order
+	@PostMapping("/user/{basketid}/orders")
+	public ResponseEntity<Object> createOrder(@PathVariable int basketid){
+		Basket basket = basketsProxy.getBasket(basketid);
+		Orders newOrder = new Orders();
+		newOrder.setUserId(basket.getUserId());
+		newOrder.setOrderTotal(basket.getTotal());
+		newOrder.setOrderItems(basket.getItems());
+		//newOrder.setTimestamp(LocalDateTime.now().toString());
+		
+		Orders order = orders.save(newOrder);
+		//orders.save(newOrder);
+		
+		URI location = ServletUriComponentsBuilder
+				.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(order.getOrderId()).toUri();
+				
+		return ResponseEntity.created(location).build();
+
+	}
 //	
 //	@PutMapping("/orders/{orderid}/add-basket/item/{itemid}")
 //	public void addToOrder (@PathVariable int orderid, @PathVariable int item) {
