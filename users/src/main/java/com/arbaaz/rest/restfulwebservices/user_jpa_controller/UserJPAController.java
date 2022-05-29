@@ -19,10 +19,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.arbaaz.rest.restfulwebservices.Basket;
+import com.arbaaz.rest.restfulwebservices.BasketProxy;
+import com.arbaaz.rest.restfulwebservices.WalletProxy;
 import com.arbaaz.rest.restfulwebservices.exception.UserNotFoundException;
 import com.arbaaz.rest.restfulwebservices.user_bean.User;
 import com.arbaaz.rest.restfulwebservices.user_repository.UserRepository;
@@ -33,11 +37,14 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 @RestController
 public class UserJPAController {
 	
-	//@Autowired
-	//private WalletProxy walletProxy;
+	@Autowired
+	private WalletProxy walletProxy;
 	//private Logger logger = LoggerFactory.getLogger(UserJPAController.class);
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private BasketProxy basketProxy;
 	
 	//retrieve all users
 	@GetMapping("/users/all-users")
@@ -76,7 +83,7 @@ public class UserJPAController {
 	@PostMapping("/users")
 	public ResponseEntity<Object> createUser(@Valid @RequestBody User user){
 		User newUser = userRepository.save(user);
-		//walletProxy.generateWallet(user.getId());
+		walletProxy.createWallet(user.getId());
 		//created
 		URI location = ServletUriComponentsBuilder
 		.fromCurrentRequest().path("/{id}")
@@ -98,10 +105,42 @@ public class UserJPAController {
 			return userRepository.existsById(id);
 		}
 		
+		/////////wallet stuff/////////
+		@GetMapping("/users/{id}/wallets/balance")
+		public Double GetBalance(@PathVariable int id) {
+			return walletProxy.GetBalance(id);
+		}
+		
+		@PutMapping("/users/{id}/wallet/add/{add}")
+		public void AddBalance(@PathVariable int id,@PathVariable double add) {
+			walletProxy.AddBalance(id, add);
+		}
+		
+		
+		/////////basket stuff/////////
 		//add item to basket
+		@GetMapping("/user/{userid}/basket/{itemid}")
+		public void addItem(@PathVariable int userid, @PathVariable int itemid) {
+			basketProxy.basketOption(userid, itemid);
+		}
+
+		//get basket
+		@GetMapping("/basket/{basketid}")
+		public Basket getBasket(@PathVariable int basketid) {
+			return basketProxy.getBasket(basketid);
+		}
 		
+		//get total basket value
+		@GetMapping("/basket/{basketid}/total")
+		public double getBasketTotal(@PathVariable int basketid) {
+			return basketProxy.getBasketTotal(basketid);
+		}
+
 		//checkout
-		
+		@GetMapping("/user/{userid}/basket/checkout")
+		public void checkout(@PathVariable int userid) {
+			basketProxy.checkout(userid);
+		}
 		
 		
 		
