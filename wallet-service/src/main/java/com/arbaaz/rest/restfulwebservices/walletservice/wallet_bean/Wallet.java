@@ -19,10 +19,10 @@ public class Wallet {
 	
 	
 	
-//	public Wallet(Integer userId) {
-//		super();
-//		this.userId = userId;
-//	}
+	public Wallet(Integer userId) {
+		super();
+		this.userId = userId;
+	}
 
 	protected Wallet() {
 		

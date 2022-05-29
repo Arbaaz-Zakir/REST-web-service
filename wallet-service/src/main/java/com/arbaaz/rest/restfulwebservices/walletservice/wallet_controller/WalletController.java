@@ -34,12 +34,13 @@ public class WalletController {
 	private UserProxy userProxy;
 	
 	
-	@PostMapping("/wallets")
-	public ResponseEntity<Object> createWallet(@RequestBody Wallet wallet){
-		Integer id = wallet.getUserId();
+	@PostMapping("/wallets/user/{user}")
+	public ResponseEntity<Object> createWallet(@PathVariable int user){
+		Wallet wallet = new Wallet(user);
 //		boolean bool = userProxy.exists(id);
 		//userProxy.exists(wallet.getUserId());
-		if(exists(id) && !walletRepository.existsById(wallet.getUserId())) {
+		if(userProxy.exists(wallet.getUserId()) && !walletRepository.existsById(wallet.getUserId())) {
+		
 			Wallet newWallet = walletRepository.save(wallet);
 			
 			URI location = ServletUriComponentsBuilder

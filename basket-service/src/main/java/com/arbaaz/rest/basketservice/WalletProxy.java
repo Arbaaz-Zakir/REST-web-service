@@ -21,8 +21,8 @@ import com.arbaaz.rest.basketservice.bean.Wallet;
 @FeignClient(value="wallet-service", url="localhost:8100")
 public interface WalletProxy {
 	
-	@PostMapping("/wallets")
-	public ResponseEntity<Object> createWallet(@RequestBody Wallet wallet);
+	@PostMapping("/wallets/user/{user}")
+	public ResponseEntity<Object> createWallet(@PathVariable int user);
 	
 	@GetMapping("/users/{id}")
 	public boolean exists(@PathVariable Integer id);
