@@ -30,6 +30,7 @@ public class OrderController {
 	
 	@Autowired
 	private OrderRepository orders;
+
 	
 	@GetMapping("/orders")
 	public List<Orders> AllOrders() {
@@ -50,6 +51,7 @@ public class OrderController {
 		newOrder.setUserId(basket.getUserId());
 		newOrder.setOrderTotal(basket.getTotal());
 		newOrder.setOrderItems(basket.getItems());
+
 		//newOrder.setTimestamp(LocalDateTime.now().toString());
 		
 		Orders order = orders.save(newOrder);
