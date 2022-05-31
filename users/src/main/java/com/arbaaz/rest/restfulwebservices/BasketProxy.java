@@ -15,6 +15,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 
+
+
+
 //import com.arbaaz.rest.basketservice.bean.Basket;
 //import com.arbaaz.rest.basketservice.bean.Item;
 
@@ -22,40 +25,29 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @FeignClient(value="basket-service", url="localhost:8400")
 public interface BasketProxy {
 	
-	//add to basket depending if they already have basket and item exists on the menu
-	@PutMapping("/user/{userid}/basket/{itemid}")
-	public void basketOption(@PathVariable int userid, @PathVariable int itemid);
-	
-	
-//	@PostMapping("/user/{userid}/basket")
-//	public ResponseEntity<Object> generateBasket(@PathVariable int userid);
+	//generate new basket
 	@PostMapping("/basket")
-	public ResponseEntity<Object> generateBasket(@RequestBody Integer userid);
-	
-	//add to existing basket
-	@GetMapping("/user/{userid}/basket/{itemid}")
-	public void addToExistingBasket(@PathVariable int userid, @PathVariable int itemid);
-
-	//get basket
-	@GetMapping("/basket/{basketid}")
-	public Basket getBasket(@PathVariable int basketid);
-	
+	public ResponseEntity<Object> generateBasket(@RequestBody Basket userid);
+			
 	//get all baskets
 	@GetMapping("/basket/all")
 	public List<Basket> getAllBaskets();
+			
+	//get a basket
+	@GetMapping("/basket/{userid}")
+	public Basket getABasket(@PathVariable Integer userid);
 	
-	//get total basket value
-	@GetMapping("/basket/{basketid}/total")
-	public double getBasketTotal(@PathVariable int basketid);
-
+	//add item to basket
+	@PutMapping("/basket/{userid}/add-item/{itemid}")
+	public void addToBasket(@PathVariable Integer userid, @PathVariable Integer itemid);
 	
-	//delete mapping
-	@DeleteMapping("/user/{userid}/basket")
-	public void clearBasket(@PathVariable int userid);
-	
+	//get basket total
+	@GetMapping("/basket/{userid}/total")
+	public double getBasketTotal(@PathVariable Integer userid);
+			
 	//checkout
-	@GetMapping("/user/{userid}/basket/checkout")
-	public void checkout(@PathVariable int userid);
+	@PutMapping("/basket/{userid}/checkout")
+	public void checkout(@PathVariable Integer userid);
 	
 
 }

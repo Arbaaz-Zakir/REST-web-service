@@ -89,7 +89,7 @@ public class UserJPAController {
 		.fromCurrentRequest().path("/{id}")
 		.buildAndExpand(newUser.getId()).toUri();
 		//generate basket
-		basketProxy.generateBasket(user.getId());
+		//basketProxy.generateBasket(user.getId());
 		return ResponseEntity.created(location).build();
 	}
 	
@@ -122,13 +122,13 @@ public class UserJPAController {
 		//add item to basket
 		@PutMapping("/users/{userid}/basket/{itemid}")
 		public void addItem(@PathVariable int userid, @PathVariable int itemid) {
-			basketProxy.basketOption(userid, itemid);
+			basketProxy.addToBasket(userid, itemid);
 		}
 
 		//get basket
 		@GetMapping("/users/basket/{basketid}")
 		public Basket getBasket(@PathVariable int basketid) {
-			return basketProxy.getBasket(basketid);
+			return basketProxy.getABasket(basketid);
 		}
 		
 		//get total basket value
