@@ -46,7 +46,7 @@ public class OrderController {
 //	//post order
 	@PostMapping("/user/{basketid}/orders")
 	public ResponseEntity<Object> createOrder(@PathVariable int basketid){
-		Basket basket = basketsProxy.getBasket(basketid);
+		Basket basket = basketsProxy.getABasket(basketid);
 		Orders newOrder = new Orders();
 		newOrder.setUserId(basket.getUserId());
 		newOrder.setOrderTotal(basket.getTotal());

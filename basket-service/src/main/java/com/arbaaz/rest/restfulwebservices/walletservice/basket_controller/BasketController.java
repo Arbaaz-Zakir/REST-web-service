@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.arbaaz.rest.restfulwebservices.walletservice.Item;
+import com.arbaaz.rest.restfulwebservices.walletservice.MenuProxy;
 import com.arbaaz.rest.restfulwebservices.walletservice.OrderProxy;
 import com.arbaaz.rest.restfulwebservices.walletservice.WalletProxy;
 import com.arbaaz.rest.restfulwebservices.walletservice.basket_bean.Basket;
@@ -27,7 +29,8 @@ import com.arbaaz.rest.restfulwebservices.walletservice.repository.BasketReposit
 @RestController
 public class BasketController {
 	
-	private UserTemplate currentUser;
+	@Autowired
+	private MenuProxy menuProxy;
 	
 	@Autowired
 	private BasketRepository basketRepository;
@@ -62,8 +65,26 @@ public class BasketController {
 	
 	//get a basket
 	@GetMapping("/basket/{userid}")
-	public Optional<Basket> getAllBaskets(@PathVariable Integer userid) {
-		return basketRepository.findById(userid);
+	public Basket getABasket(@PathVariable Integer userid) {
+		return basketRepository.getById(userid);
+	}
+	
+	//add item to basket
+	@PutMapping("/basket/{userid}/add-item/{itemid}")
+	public void addToBasket(@PathVariable Integer userid, @PathVariable Integer itemid) {
+		Basket basket = new Basket();
+		basket = basketRepository.getById(userid);
+		
+		Item item = menuProxy.getMenuItem(itemid);
+		
+		basket.addItem(item.getItemName(), item.getPrice());
+		basketRepository.save(basket);
+	}
+	
+	//get basket total
+	@GetMapping("/basket/{userid}/total")
+	public double getBasketTotal(@PathVariable Integer userid) {
+		return basketRepository.getById(userid).getTotal();
 	}
 	
 	//checkout
