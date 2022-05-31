@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.arbaaz.rest.restfulwebservices.walletservice.OrderProxy;
+import com.arbaaz.rest.restfulwebservices.walletservice.WalletProxy;
 import com.arbaaz.rest.restfulwebservices.walletservice.basket_bean.Basket;
 import com.arbaaz.rest.restfulwebservices.walletservice.basket_bean.UserTemplate;
 import com.arbaaz.rest.restfulwebservices.walletservice.repository.BasketRepository;
@@ -34,6 +35,9 @@ public class BasketController {
 	@Autowired
 	private OrderProxy orderProxy;
 	
+	@Autowired
+	private WalletProxy walletProxy;
+	
 	//generate new basket
 	@PostMapping("/basket")
 	public ResponseEntity<Object> generateBasket(@RequestBody Basket userid) {
@@ -50,7 +54,37 @@ public class BasketController {
 		
 	}
 	
+	//get all baskets
+	@GetMapping("/basket/all")
+	public List<Basket> getAllBaskets() {
+		return basketRepository.findAll();
+	}
 	
+	//get a basket
+	@GetMapping("/basket/{userid}")
+	public Optional<Basket> getAllBaskets(@PathVariable Integer userid) {
+		return basketRepository.findById(userid);
+	}
+	
+	//checkout
+	@PutMapping("/basket/{userid}/checkout")
+	public void checkout(@PathVariable Integer userid) {
+		if(basketRepository.getById(userid).getTotal() <= walletProxy.GetBalance(userid)) {
+			Basket basket = basketRepository.getById(userid);
+			basket.setClosed(true);
+			basketRepository.save(basket);
+			orderProxy.createOrder(basket.getUserId());
+			
+			//minus from wallet
+			walletProxy.MinusBalance(userid, basket.getTotal());
+			
+			Basket generatedBasket = new Basket();
+			generatedBasket.setUserId(basket.getUserId());
+			generateBasket(generatedBasket);
+			
+		}
+		
+	}
 	
 	
 
