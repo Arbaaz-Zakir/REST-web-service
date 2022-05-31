@@ -1,4 +1,4 @@
-package com.arbaaz.rest.basketservice;
+package com.arbaaz.rest.restfulwebservices.walletservice;
 
 import java.net.URI;
 import java.util.List;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.arbaaz.rest.basketservice.bean.Basket;
 
 //import com.arbaaz.rest.orderservice.order_bean.Basket;
 //import com.arbaaz.rest.orderservice.order_bean.Order;

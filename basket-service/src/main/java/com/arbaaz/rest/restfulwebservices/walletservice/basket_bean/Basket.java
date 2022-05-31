@@ -1,4 +1,4 @@
-package com.arbaaz.rest.basketservice.bean;
+package com.arbaaz.rest.restfulwebservices.walletservice.basket_bean;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,13 +12,13 @@ import javax.persistence.Id;
 @Entity
 public class Basket {
 	
-//	@Id
-//	@GeneratedValue
-//	private Integer basketId;
 	@Id
+	@GeneratedValue
+	private Integer basketId;
+
 	private Integer userId;
 	
-	private String items;
+	private String items = "";
 	
 	private double total = 0;
 	
@@ -38,13 +38,13 @@ public class Basket {
 		this.items = items;
 	}
 
-//	public Integer getBasketId() {
-//		return basketId;
-//	}
-//
-//	public void setBasketId(Integer basketId) {
-//		this.basketId = basketId;
-//	}
+	public Integer getBasketId() {
+		return basketId;
+	}
+
+	public void setBasketId(Integer basketId) {
+		this.basketId = basketId;
+	}
 
 	public Integer getUserId() {
 		return userId;

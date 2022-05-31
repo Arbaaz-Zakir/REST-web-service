@@ -88,7 +88,8 @@ public class UserJPAController {
 		URI location = ServletUriComponentsBuilder
 		.fromCurrentRequest().path("/{id}")
 		.buildAndExpand(newUser.getId()).toUri();
-		
+		//generate basket
+		basketProxy.generateBasket(user.getId());
 		return ResponseEntity.created(location).build();
 	}
 	
@@ -99,7 +100,7 @@ public class UserJPAController {
 			
 		}
 		
-		@GetMapping("/users/{id}")
+		@GetMapping("/users/{id}/exists")
 		public boolean exists(@PathVariable Integer id){
 			//logger.info("does user " + id +" exist");
 			return userRepository.existsById(id);
@@ -119,25 +120,25 @@ public class UserJPAController {
 		
 		/////////basket stuff/////////
 		//add item to basket
-		@GetMapping("/user/{userid}/basket/{itemid}")
+		@PutMapping("/users/{userid}/basket/{itemid}")
 		public void addItem(@PathVariable int userid, @PathVariable int itemid) {
 			basketProxy.basketOption(userid, itemid);
 		}
 
 		//get basket
-		@GetMapping("/basket/{basketid}")
+		@GetMapping("/users/basket/{basketid}")
 		public Basket getBasket(@PathVariable int basketid) {
 			return basketProxy.getBasket(basketid);
 		}
 		
 		//get total basket value
-		@GetMapping("/basket/{basketid}/total")
+		@GetMapping("/users/basket/{basketid}/total")
 		public double getBasketTotal(@PathVariable int basketid) {
 			return basketProxy.getBasketTotal(basketid);
 		}
 
 		//checkout
-		@GetMapping("/user/{userid}/basket/checkout")
+		@PutMapping("/users/{userid}/basket/checkout")
 		public void checkout(@PathVariable int userid) {
 			basketProxy.checkout(userid);
 		}

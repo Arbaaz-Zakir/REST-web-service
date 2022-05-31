@@ -62,7 +62,7 @@ public class WalletController {
 		//return null;
 	}
 	
-	@GetMapping("/users/{id}")
+	@GetMapping("/wallets/exists/{id}")
 	public boolean exists(@PathVariable Integer id) {
 		return userProxy.exists(id);
 		
@@ -74,7 +74,7 @@ public class WalletController {
 		return walletRepository.findAll();
 	}
 	
-	@GetMapping("/wallets/{id}")
+	@GetMapping("/wallets/balance/{id}")
 	public Double GetBalance(@PathVariable int id) {
 		//Optional<Wallet> wallet = walletRepository.findById(id);
 		Wallet wallet = walletRepository.getById(id);

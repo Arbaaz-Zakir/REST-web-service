@@ -24,13 +24,13 @@ public interface WalletProxy {
 	@PostMapping("/wallets/user/{user}")
 	public ResponseEntity<Object> createWallet(@PathVariable int user);
 	
-	@GetMapping("/users/{id}")
+	@GetMapping("/wallets/exists/{id}")
 	public boolean exists(@PathVariable Integer id);
 	
 	@GetMapping("/wallets")
 	public List<Wallet> allWallets();
 	
-	@GetMapping("/wallets/{id}")
+	@GetMapping("/wallets/balance/{id}")
 	public Double GetBalance(@PathVariable int id);
 	
 	@PutMapping("/wallets/{id}/add/{add}")
@@ -38,5 +38,6 @@ public interface WalletProxy {
 	
 	@PutMapping("/wallets/{id}/minus/{minus}")
 	public void MinusBalance(@PathVariable int id, @PathVariable double minus);
+	
 
 }

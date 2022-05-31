@@ -1,4 +1,4 @@
-package com.arbaaz.rest.basketservice;
+package com.arbaaz.rest.restfulwebservices.walletservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

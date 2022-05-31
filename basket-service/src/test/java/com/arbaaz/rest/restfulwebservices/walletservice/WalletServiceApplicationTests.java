@@ -1,10 +1,10 @@
-package com.arbaaz.rest.basketservice;
+package com.arbaaz.rest.restfulwebservices.walletservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BasketServiceApplicationTests {
+class WalletServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
