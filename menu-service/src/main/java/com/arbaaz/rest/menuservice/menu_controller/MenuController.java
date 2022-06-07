@@ -2,6 +2,7 @@ package com.arbaaz.rest.menuservice.menu_controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,23 +42,20 @@ public class MenuController {
 		return menuRepository.findAll();
 	}
 	
-	@DeleteMapping("/menu/{id}")
+	@DeleteMapping("/menu/delete/{id}")
 	public void deleteItem(@PathVariable int id){
 		menuRepository.deleteById(id);
 		
 	}
 	
-	@GetMapping("/menu/{itemid}")
-	public Item getMenuItem(@PathVariable int itemid) {
-		return menuRepository.getById(itemid);
+	@GetMapping("/menu/{id}")
+	public Optional<Item> getMenuItem(@PathVariable int id) {
+		return menuRepository.findById(id);
 	}
 	
-	@GetMapping("/menu/{id}")
+	@GetMapping("/menu/exists/{id}")
 	public boolean exists(@PathVariable int id) {
-		if(menuRepository.getById(id)!=null) {
-			return true;
-		}
-		return false;
+		return menuRepository.existsById(id);
 	}
 	
 
