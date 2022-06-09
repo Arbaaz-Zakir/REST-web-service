@@ -107,7 +107,7 @@ public class UserJPAController {
 		}
 		
 		/////////wallet stuff/////////
-		@GetMapping("/users/{id}/wallets/balance")
+		@GetMapping("/users/{id}/wallet/balance")
 		public Double GetBalance(@PathVariable int id) {
 			return walletProxy.GetBalance(id);
 		}
