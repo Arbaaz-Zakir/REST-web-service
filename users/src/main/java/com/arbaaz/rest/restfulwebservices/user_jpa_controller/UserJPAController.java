@@ -89,7 +89,7 @@ public class UserJPAController {
 		.fromCurrentRequest().path("/{id}")
 		.buildAndExpand(newUser.getId()).toUri();
 		//generate basket
-		//basketProxy.generateBasket(user.getId());
+		basketProxy.generateBasket(user.getId());
 		return ResponseEntity.created(location).build();
 	}
 	

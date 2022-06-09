@@ -26,8 +26,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public interface BasketProxy {
 	
 	//generate new basket
-	@PostMapping("/basket")
-	public ResponseEntity<Object> generateBasket(@RequestBody Basket userid);
+	@PostMapping("/basket/{integer}")
+	public ResponseEntity<Object> generateBasket(@PathVariable Integer integer);
 			
 	//get all baskets
 	@GetMapping("/basket/all")

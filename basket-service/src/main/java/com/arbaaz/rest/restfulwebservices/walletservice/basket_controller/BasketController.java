@@ -42,10 +42,10 @@ public class BasketController {
 	private WalletProxy walletProxy;
 	
 	//generate new basket
-	@PostMapping("/basket")
-	public ResponseEntity<Object> generateBasket(@RequestBody Basket userid) {
+	@PostMapping("/basket/{userid}")
+	public ResponseEntity<Object> generateBasket(@PathVariable int userid) {
 		Basket generatedBasket = new Basket();
-		generatedBasket.setUserId(userid.getUserId());
+		generatedBasket.setUserId(userid);
 		basketRepository.save(generatedBasket);
 		
 		
@@ -65,8 +65,8 @@ public class BasketController {
 	
 	//get a basket
 	@GetMapping("/basket/{userid}")
-	public Basket getABasket(@PathVariable Integer userid) {
-		return basketRepository.getById(userid);
+	public Optional<Basket> getABasket(@PathVariable Integer userid) {
+		return basketRepository.findById(userid);
 	}
 	
 	//add item to basket
@@ -99,9 +99,9 @@ public class BasketController {
 			//minus from wallet
 			walletProxy.MinusBalance(userid, basket.getTotal());
 			
-			Basket generatedBasket = new Basket();
-			generatedBasket.setUserId(basket.getUserId());
-			generateBasket(generatedBasket);
+//			Basket generatedBasket = new Basket();
+//			generatedBasket.setUserId(basket.getUserId());
+			generateBasket(basket.getUserId());
 			
 		}
 		
