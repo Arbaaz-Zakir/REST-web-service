@@ -126,15 +126,15 @@ public class UserJPAController {
 		}
 
 		//get basket
-		@GetMapping("/users/basket/{basketid}")
-		public Basket getBasket(@PathVariable int basketid) {
-			return basketProxy.getABasket(basketid);
+		@GetMapping("/users/{userid}/basket")
+		public Basket getBasket(@PathVariable int userid) {
+			return basketProxy.getABasket(userid);
 		}
 		
 		//get total basket value
-		@GetMapping("/users/basket/{basketid}/total")
-		public double getBasketTotal(@PathVariable int basketid) {
-			return basketProxy.getBasketTotal(basketid);
+		@GetMapping("/users/{userid}/basket/total")
+		public double getBasketTotal(@PathVariable int userid) {
+			return basketProxy.getBasketTotal(userid);
 		}
 
 		//checkout
