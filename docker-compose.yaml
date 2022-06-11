@@ -1,0 +1,76 @@
+version: '3.9'
+
+services:
+
+  naming-server:
+    image: arbaaz06/msc-naming-server:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "127.0.0.1:8761:8761"
+    networks:
+      - msc-microservice-network
+    expose:
+      - "8761"
+      
+  users-service:
+    image: arbaaz06/msc-users-service:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "127.0.0.1:8000:8000"
+    networks:
+      - msc-microservice-network
+    depends_on:
+      - naming-server
+    expose:
+      - "8000"
+      
+  wallet-service:
+    image: arbaaz06/msc-wallet-service:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "127.0.0.1:8100:8100"
+    networks:
+      - msc-microservice-network
+    depends_on:
+      - naming-server
+    expose:
+      - "8100"
+      
+  menu-service:
+    image: arbaaz06/msc-menu-service:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "127.0.0.1:8200:8200"
+    networks:
+      - msc-microservice-network
+    depends_on:
+      - naming-server
+    expose:
+      - "8200"
+      
+  order-service:
+    image: arbaaz06/msc-order-service:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "127.0.0.1:8300:8300"
+    networks:
+      - msc-microservice-network
+    depends_on:
+      - naming-server
+    expose:
+      - "8300"
+      
+  basket-service:
+    image: arbaaz06/msc-basket-service:0.0.1-SNAPSHOT
+    mem_limit: 700m
+    ports:
+      - "127.0.0.1:8400:8400"
+    networks:
+      - msc-microservice-network
+    depends_on:
+      - naming-server
+    expose:
+      - "8400"
+      
+networks:
+  msc-microservice-network:
