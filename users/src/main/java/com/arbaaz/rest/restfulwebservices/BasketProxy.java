@@ -22,7 +22,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 //import com.arbaaz.rest.basketservice.bean.Item;
 
 
-@FeignClient(value="basket-service", url="localhost:8400")
+@FeignClient(value="basket-service", url="basket-service:8400")
 public interface BasketProxy {
 	
 	//generate new basket
