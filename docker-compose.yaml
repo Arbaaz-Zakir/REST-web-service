@@ -9,11 +9,10 @@ services:
       - "127.0.0.1:8761:8761"
     networks:
       - msc-microservice-network
-    expose:
-      - "8761"
+
       
   users-service:
-    image: arbaaz06/msc-users-service:0.0.1-SNAPSHOT
+    image: arbaaz06/msc-users-service:0.0.2-SNAPSHOT
     mem_limit: 700m
     ports:
       - "127.0.0.1:8000:8000"
@@ -21,11 +20,12 @@ services:
       - msc-microservice-network
     depends_on:
       - naming-server
-    expose:
-      - "8000"
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
       
   wallet-service:
-    image: arbaaz06/msc-wallet-service:0.0.1-SNAPSHOT
+    image: arbaaz06/msc-wallet-service:0.0.2-SNAPSHOT
     mem_limit: 700m
     ports:
       - "127.0.0.1:8100:8100"
@@ -33,8 +33,9 @@ services:
       - msc-microservice-network
     depends_on:
       - naming-server
-    expose:
-      - "8100"
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
       
   menu-service:
     image: arbaaz06/msc-menu-service:0.0.1-SNAPSHOT
@@ -45,11 +46,12 @@ services:
       - msc-microservice-network
     depends_on:
       - naming-server
-    expose:
-      - "8200"
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
       
   order-service:
-    image: arbaaz06/msc-order-service:0.0.1-SNAPSHOT
+    image: arbaaz06/msc-order-service:0.0.2-SNAPSHOT
     mem_limit: 700m
     ports:
       - "127.0.0.1:8300:8300"
@@ -57,11 +59,12 @@ services:
       - msc-microservice-network
     depends_on:
       - naming-server
-    expose:
-      - "8300"
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
       
   basket-service:
-    image: arbaaz06/msc-basket-service:0.0.1-SNAPSHOT
+    image: arbaaz06/msc-basket-service:0.0.2-SNAPSHOT
     mem_limit: 700m
     ports:
       - "127.0.0.1:8400:8400"
@@ -69,8 +72,9 @@ services:
       - msc-microservice-network
     depends_on:
       - naming-server
-    expose:
-      - "8400"
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+
       
 networks:
   msc-microservice-network:
