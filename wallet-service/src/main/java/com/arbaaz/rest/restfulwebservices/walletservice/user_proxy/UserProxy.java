@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 
-@FeignClient(name="user-service", url = "user-service:8000")
+@FeignClient("user-service")
 public interface UserProxy {
 	
 	//retrieve all users
