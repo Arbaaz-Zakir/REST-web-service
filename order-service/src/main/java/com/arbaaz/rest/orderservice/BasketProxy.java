@@ -20,7 +20,8 @@ import com.arbaaz.rest.orderservice.order_bean.Basket;
 //import com.arbaaz.rest.basketservice.bean.Basket;
 //import com.arbaaz.rest.basketservice.bean.Item;
 
-@FeignClient(value="basket-service", url="localhost:8400")
+//@FeignClient(value="basket-service", url="localhost:8400")
+@FeignClient(name="basket-service")
 public interface BasketProxy {
 	
 	

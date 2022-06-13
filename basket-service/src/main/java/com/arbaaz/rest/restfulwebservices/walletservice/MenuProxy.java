@@ -14,7 +14,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 
-@FeignClient(value="menu-service", url="localhost:8200")
+//@FeignClient(value="menu-service", url="localhost:8200")
+@FeignClient(name="menu-service")
 public interface MenuProxy {
 	@PostMapping("/menu")
 	public ResponseEntity<Object> addItem(@RequestBody Item item);

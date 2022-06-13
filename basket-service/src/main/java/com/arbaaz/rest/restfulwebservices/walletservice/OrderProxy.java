@@ -15,7 +15,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 //import com.arbaaz.rest.orderservice.order_bean.Basket;
 //import com.arbaaz.rest.orderservice.order_bean.Order;
 
-@FeignClient(value="order-service", url="localhost:8300")
+//@FeignClient(value="order-service", url="localhost:8300")
+@FeignClient(name="order-service")
 public interface OrderProxy {
 	
 	

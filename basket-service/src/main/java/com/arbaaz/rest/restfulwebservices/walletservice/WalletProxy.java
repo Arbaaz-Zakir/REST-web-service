@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 
-@FeignClient(value="wallet-service", url="localhost:8100")
+//@FeignClient(value="wallet-service", url="localhost:8100")
+@FeignClient(name="wallet-service")
 public interface WalletProxy {
 	
 	@PostMapping("/wallets/user/{user}")
