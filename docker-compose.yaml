@@ -38,7 +38,7 @@ services:
 
       
   menu-service:
-    image: arbaaz06/msc-menu-service:0.0.1-SNAPSHOT
+    image: arbaaz06/msc-menu-service:0.0.2-SNAPSHOT
     mem_limit: 700m
     ports:
       - "127.0.0.1:8200:8200"
