@@ -20,8 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 //import com.arbaaz.rest.restfulwebservices.walletservice.wallet_bean.Wallet;
 
 //@FeignClient(value="wallet-service", url="localhost:8100")
-@FeignClient(name="wallet-service")
-
+@FeignClient(name="wallet-service", url="wallet-service:8100")
 public interface WalletProxy {
 	
 	@PostMapping("/wallets/user/{user}")

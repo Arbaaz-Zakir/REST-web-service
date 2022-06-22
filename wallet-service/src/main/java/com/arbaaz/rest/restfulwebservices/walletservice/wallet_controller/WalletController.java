@@ -25,8 +25,6 @@ import com.arbaaz.rest.restfulwebservices.walletservice.wallet_repository.Wallet
 @RestController
 public class WalletController {
 	
-	private UserTemplate currentUser;
-	
 	@Autowired
 	private WalletRepository walletRepository;
 	
@@ -39,7 +37,7 @@ public class WalletController {
 		Wallet wallet = new Wallet(user);
 //		boolean bool = userProxy.exists(id);
 		//userProxy.exists(wallet.getUserId());
-		if(userProxy.exists(wallet.getUserId()) && !walletRepository.existsById(wallet.getUserId())) {
+		//if(userProxy.exists(wallet.getUserId()) && !walletRepository.existsById(wallet.getUserId())) {
 		
 			Wallet newWallet = walletRepository.save(wallet);
 			
@@ -50,7 +48,7 @@ public class WalletController {
 					.toUri();
 			
 			return ResponseEntity.created(location).build();
-		}
+		//}
 //		URI location = ServletUriComponentsBuilder
 //				.fromCurrentRequest().path("/{id}")
 //				.buildAndExpand(newWallet
@@ -58,7 +56,8 @@ public class WalletController {
 //				.toUri();
 		
 //		return ResponseEntity.created(location).build();
-		return ResponseEntity.badRequest().build();
+		
+		//return ResponseEntity.badRequest().build();
 		//return null;
 	}
 	

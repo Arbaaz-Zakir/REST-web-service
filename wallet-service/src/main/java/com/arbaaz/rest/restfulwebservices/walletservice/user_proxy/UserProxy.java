@@ -24,8 +24,7 @@ import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 
 
 //@FeignClient(name="user-service", url = "localhost:8000")
-@FeignClient(name="user-service")
-
+@FeignClient(name="user-service", url="user-service:8000")
 public interface UserProxy {
 	
 	//retrieve all users

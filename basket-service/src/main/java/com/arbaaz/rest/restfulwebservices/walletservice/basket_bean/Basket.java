@@ -81,7 +81,7 @@ public class Basket {
 
 	public void addItem(String item, double price) {
 		total += price;
-		items+= item + "\n";
+		items+= item + ", ";
 	}
 	
 //	public void removeItem(int item) {
