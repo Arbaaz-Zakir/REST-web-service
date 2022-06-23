@@ -12,7 +12,7 @@ services:
 
       
   users-service:
-    image: arbaaz06/msc-users-service:0.0.2-SNAPSHOT
+    image: arbaaz06/msc-users-service:0.0.3-SNAPSHOT
     mem_limit: 700m
     ports:
       - "127.0.0.1:8000:8000"
@@ -25,7 +25,7 @@ services:
 
       
   wallet-service:
-    image: arbaaz06/msc-wallet-service:0.0.2-SNAPSHOT
+    image: arbaaz06/msc-wallet-service:0.0.3-SNAPSHOT
     mem_limit: 700m
     ports:
       - "127.0.0.1:8100:8100"
@@ -51,7 +51,7 @@ services:
 
       
   order-service:
-    image: arbaaz06/msc-order-service:0.0.2-SNAPSHOT
+    image: arbaaz06/msc-order-service:0.0.3-SNAPSHOT
     mem_limit: 700m
     ports:
       - "127.0.0.1:8300:8300"
@@ -64,7 +64,7 @@ services:
 
       
   basket-service:
-    image: arbaaz06/msc-basket-service:0.0.2-SNAPSHOT
+    image: arbaaz06/msc-basket-service:0.0.3-SNAPSHOT
     mem_limit: 700m
     ports:
       - "127.0.0.1:8400:8400"
