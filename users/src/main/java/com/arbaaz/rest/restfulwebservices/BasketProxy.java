@@ -24,7 +24,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 //@FeignClient(value="basket-service", url="localhost:8400")
-@FeignClient(name="basket-service", url="basket-service:8400")
+@FeignClient(name="basket-service")
 public interface BasketProxy {
 	
 	//generate new basket

@@ -17,7 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 //@FeignClient(value="order-service", url="localhost:8300")
-@FeignClient(name="order-service", url="order-service:8300")
+@FeignClient(name="order-service")
 public interface OrderProxy {
 	
 	
