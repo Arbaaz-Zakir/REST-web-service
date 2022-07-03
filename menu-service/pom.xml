@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.arbaaz.rest</groupId>
 	<artifactId>menu-service</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>0.0.10-SNAPSHOT</version>
 	<name>menu-service</name>
 	<description>menu microservice</description>
 	<properties>

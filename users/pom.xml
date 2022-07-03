@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.arbaaz.rest</groupId>
 	<artifactId>users-service</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>0.0.10-SNAPSHOT</version>
 	<name>users</name>
 	<description>user REST web service microservice</description>
 	<properties>
@@ -59,7 +59,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
-
+		
+		
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-kubernetes-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-kubernetes-config</artifactId>
+        </dependency>
+        
+        
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
