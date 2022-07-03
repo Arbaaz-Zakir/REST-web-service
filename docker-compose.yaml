@@ -3,7 +3,7 @@ version: '3.9'
 services:
 
   naming-server:
-    image: arbaaz06/msc-naming-server:0.0.4-SNAPSHOT
+    image: arbaaz06/msc-naming-server:0.0.10-SNAPSHOT
     ports:
       - "0.0.0.0:8761:8761"
     networks:
@@ -12,7 +12,7 @@ services:
 
       
   users-service:
-    image: arbaaz06/msc-users-service:0.0.4-SNAPSHOT
+    image: arbaaz06/msc-users-service:0.0.10-SNAPSHOT
     ports:
       - "0.0.0.0:8000:8000"
     networks:
@@ -24,7 +24,7 @@ services:
 
       
   wallet-service:
-    image: arbaaz06/msc-wallet-service:0.0.4-SNAPSHOT
+    image: arbaaz06/msc-wallet-service:0.0.10-SNAPSHOT
     ports:
       - "0.0.0.0:8100:8100"
     networks:
@@ -36,7 +36,7 @@ services:
 
       
   menu-service:
-    image: arbaaz06/msc-menu-service:0.0.4-SNAPSHOT
+    image: arbaaz06/msc-menu-service:0.0.10-SNAPSHOT
     ports:
       - "0.0.0.0:8200:8200"
     networks:
@@ -48,7 +48,7 @@ services:
 
       
   order-service:
-    image: arbaaz06/msc-order-service:0.0.4-SNAPSHOT
+    image: arbaaz06/msc-order-service:0.0.10-SNAPSHOT
     ports:
       - "0.0.0.0:8300:8300"
     networks:
@@ -60,9 +60,20 @@ services:
 
       
   basket-service:
-    image: arbaaz06/msc-basket-service:0.0.4-SNAPSHOT
+    image: arbaaz06/msc-basket-service:0.0.10-SNAPSHOT
     ports:
       - "0.0.0.0:8400:8400"
+    networks:
+      - msc-microservice-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      
+  cloud-gateway:
+    image: arbaaz06/msc-cloud-gateway:0.0.10-SNAPSHOT
+    ports:
+      - "0.0.0.0:8500:8500"
     networks:
       - msc-microservice-network
     depends_on:
