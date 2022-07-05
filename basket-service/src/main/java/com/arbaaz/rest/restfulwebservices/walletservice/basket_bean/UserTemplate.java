@@ -21,14 +21,6 @@ public class UserTemplate {
 	
 	private Date birthdate;
 	
-	//contructor below user for DAO 
-//	public User(Integer id, String name, Date birthdate) {
-//		super();
-//		this.id = id;
-//		this.name = name;
-//		this.birthdate = birthdate;
-//	}
-	
 	protected UserTemplate() {
 		
 	}
@@ -55,6 +47,4 @@ public class UserTemplate {
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", birthdate=" + birthdate + "]";
 	}
-	
-
 }
