@@ -52,7 +52,5 @@ public class ItemTemplate {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
-	
 
 }

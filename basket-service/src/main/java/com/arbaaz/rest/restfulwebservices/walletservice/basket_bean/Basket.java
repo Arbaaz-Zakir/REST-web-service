@@ -1,7 +1,6 @@
 package com.arbaaz.rest.restfulwebservices.walletservice.basket_bean;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 

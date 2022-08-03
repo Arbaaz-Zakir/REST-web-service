@@ -34,7 +34,6 @@ public class MenuController {
 				.toUri();
 		
 		return ResponseEntity.created(location).build();
-		
 	}
 	
 	@GetMapping("/menu")
@@ -57,6 +56,4 @@ public class MenuController {
 	public boolean exists(@PathVariable int id) {
 		return menuRepository.existsById(id);
 	}
-	
-
 }

@@ -1,13 +1,8 @@
 package com.arbaaz.rest.orderservice.order_bean;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-//import org.springframework.beans.factory.annotation.Autowired;
-//
-//import com.arbaaz.rest.basketservice.MenuProxy;
-//import com.arbaaz.rest.basketservice.repository.ItemRepository;
 
 @Entity
 public class Basket {
@@ -82,14 +77,4 @@ public class Basket {
 		total += price;
 		items+= item + ", ";
 	}
-	
-//	public void removeItem(int item) {
-//		if(items.existsById(item)) {
-//			total-=items.getById(item).getPrice();
-//			items.deleteById(item);
-//		}
-//	}
-	
-	
-
 }

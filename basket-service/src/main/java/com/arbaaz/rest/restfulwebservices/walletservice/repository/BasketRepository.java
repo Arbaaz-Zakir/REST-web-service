@@ -7,3 +7,4 @@ import com.arbaaz.rest.restfulwebservices.walletservice.basket_bean.Basket;
 public interface BasketRepository extends JpaRepository<Basket, Integer>{
 
 }
+

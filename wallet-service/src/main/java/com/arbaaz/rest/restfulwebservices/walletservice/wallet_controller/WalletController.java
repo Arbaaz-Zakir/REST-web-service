@@ -2,22 +2,15 @@ package com.arbaaz.rest.restfulwebservices.walletservice.wallet_controller;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
-
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.arbaaz.rest.restfulwebservices.walletservice.user_proxy.UserProxy;
-import com.arbaaz.rest.restfulwebservices.walletservice.wallet_bean.UserTemplate;
 //import com.arbaaz.rest.restfulwebservices.walletservice.user_proxy.UserProxy;
 import com.arbaaz.rest.restfulwebservices.walletservice.wallet_bean.Wallet;
 import com.arbaaz.rest.restfulwebservices.walletservice.wallet_repository.WalletRepository;
@@ -35,10 +28,6 @@ public class WalletController {
 	@PostMapping("/wallets/user/{user}")
 	public ResponseEntity<Object> createWallet(@PathVariable int user){
 		Wallet wallet = new Wallet(user);
-//		boolean bool = userProxy.exists(id);
-		//userProxy.exists(wallet.getUserId());
-		//if(userProxy.exists(wallet.getUserId()) && !walletRepository.existsById(wallet.getUserId())) {
-		
 			Wallet newWallet = walletRepository.save(wallet);
 			
 			URI location = ServletUriComponentsBuilder
@@ -48,24 +37,11 @@ public class WalletController {
 					.toUri();
 			
 			return ResponseEntity.created(location).build();
-		//}
-//		URI location = ServletUriComponentsBuilder
-//				.fromCurrentRequest().path("/{id}")
-//				.buildAndExpand(newWallet
-//						.getWalletId())
-//				.toUri();
-		
-//		return ResponseEntity.created(location).build();
-		
-		//return ResponseEntity.badRequest().build();
-		//return null;
 	}
 	
 	@GetMapping("/wallets/exists/{id}")
 	public boolean exists(@PathVariable Integer id) {
 		return userProxy.exists(id);
-		
-		
 	}
 	
 	@GetMapping("/wallets")
@@ -101,7 +77,4 @@ public class WalletController {
 		//return walletRepository.getById(id);
 
 	}
-	
-	
-
 }

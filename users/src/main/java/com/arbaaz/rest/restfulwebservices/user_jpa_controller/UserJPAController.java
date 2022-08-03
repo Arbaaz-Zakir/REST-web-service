@@ -1,7 +1,6 @@
 package com.arbaaz.rest.restfulwebservices.user_jpa_controller;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -141,10 +140,5 @@ public class UserJPAController {
 		@PutMapping("/users/{userid}/basket/checkout")
 		public void checkout(@PathVariable int userid) {
 			basketProxy.checkout(userid);
-		}
-		
-		
-		
-		
-		
+		}		
 }

@@ -1,7 +1,6 @@
 package com.arbaaz.rest.restfulwebservices;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
@@ -16,8 +15,6 @@ public class Wallet {
 	private Integer userId;
 	
 	private double balance = (double) 10;
-	
-	
 	
 //	public Wallet(Integer userId) {
 //		super();
@@ -59,7 +56,4 @@ public class Wallet {
 	public void minusBalance(double amount) {
 		balance -= amount;
 	}
-	
-	
-
 }

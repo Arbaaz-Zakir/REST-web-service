@@ -1,27 +1,13 @@
 package com.arbaaz.rest.restfulwebservices;
 
-import java.net.URI;
 import java.util.List;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-
-
-
-
-
-//import com.arbaaz.rest.basketservice.bean.Basket;
-//import com.arbaaz.rest.basketservice.bean.Item;
-
-
 
 //@FeignClient(value="basket-service", url="localhost:8400")
 @FeignClient(name="basket-service")
@@ -50,6 +36,5 @@ public interface BasketProxy {
 	//checkout
 	@PutMapping("/basket/{userid}/checkout")
 	public void checkout(@PathVariable Integer userid);
-	
 
 }

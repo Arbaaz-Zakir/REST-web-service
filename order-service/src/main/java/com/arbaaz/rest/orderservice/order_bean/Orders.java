@@ -1,10 +1,5 @@
 package com.arbaaz.rest.orderservice.order_bean;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -79,45 +74,5 @@ public class Orders {
 	public void setOrderItems(String items) {
 		this.orderItems = items;
 	}
-
-//	public String getTimestamp() {
-//		return timestamp;
-//	}
-//
-//	public void setTimestamp(String timestamp) {
-//		this.timestamp = timestamp;
-//	}
-//	
-	
-
-	
-
-	
-	
-	
-
-
-
-	
-	
-	
-//	public void completeOrder() {
-//		for(int i = 1; i< basket.count(); i++) {
-//			orderTotal += basket.getById(i).getPrice();
-//		}
-////		for(ItemTemplate item : basket.) {
-////			orderTotal += item.getPrice();
-////		}
-//		this.orderComplete = true;
-//	}
-//	
-//	public void addItem(ItemTemplate item) {
-//		basket.save(item);
-//	}
-//	
-//	public void removeItem(ItemTemplate item) {
-//		basket.delete(item);
-//	}
-	
 
 }

@@ -26,9 +26,4 @@ public class ExceptionTemplate {
 	public String getDetails() {
 		return details;
 	}
-	
-	
-	
-	
-
 }
