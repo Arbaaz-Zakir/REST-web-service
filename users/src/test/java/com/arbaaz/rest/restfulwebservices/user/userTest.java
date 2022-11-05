@@ -31,7 +31,7 @@ class userTest {
 		int expected = 99;
 		int result = user.getId();
 		//then
-		assertThat(user.getId()).isEqualTo(expected);
+		assertThat(result).isEqualTo(expected);
 		//fail("Not yet implemented");
 	}
 
