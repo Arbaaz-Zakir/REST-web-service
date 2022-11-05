@@ -32,7 +32,7 @@ public class User {
 //		this.birthdate = birthdate;
 //	}
 	
-	protected User() {
+	public User() {
 		
 	}
 	
